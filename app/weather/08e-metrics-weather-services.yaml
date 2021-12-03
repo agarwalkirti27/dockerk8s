@@ -2,7 +2,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: weather-services
+  name: weather-services-u10
   # namespace: weather
 spec:
   type: ClusterIP
@@ -19,8 +19,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: weather-services
-  name: weather-services
+    app: weather-services-u10
+  name: weather-services-u10
   # namespace: weather
 spec:
   replicas: 1
@@ -57,7 +57,7 @@ spec:
             name: elastic-apm-agent          
           env:
             - name: spring.application.name
-              value: weather-services
+              value: weather-services-u10
             - name: server.port
               value: "8080"
             - name: ELASTIC_APM_SERVER_URL 
@@ -81,12 +81,12 @@ spec:
             - name: management.endpoints.web.exposure.include
               value: "*"
             - name: spring.application.name
-              value: weather-services
+              value: weather-services-u10
             - name: management.server.port
               value: "8888"
             - name: management.metrics.web.server.request.autotime.enabled
               value: "true"
             - name: management.metrics.tags.application
-              value: weather-services         
+              value: weather-services-u10       
           ports:
             - containerPort: 8080
