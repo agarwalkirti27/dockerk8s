@@ -4,7 +4,7 @@ kind: Deployment
 metadata:
   labels:
     app: weather
-  name: weather-front
+  name: weather-front-u10
 spec:
   replicas: 1
   selector:
@@ -34,7 +34,7 @@ spec:
       containers:
         - image: brainupgrade/weather:metrics
           imagePullPolicy: Always
-          name: weather-front
+          name: weather-front-u10
           resources:
             limits:
               cpu: 1
@@ -79,7 +79,7 @@ spec:
                   name: app-config
                   key: ELASTIC_APM_APPLICATION_PACKAGES
             - name: ELASTIC_APM_SERVICE_NAME 
-              value: "weather-front" 
+              value: "weather-front-u10" 
             - name: ELASTIC_APM_ENVIRONMENT 
               value: prod
             - name: ELASTIC_APM_LOG_LEVEL 
@@ -93,14 +93,14 @@ spec:
             - name: management.metrics.web.server.request.autotime.enabled
               value: "true"
             - name: management.metrics.tags.application
-              value: weather-front
+              value: weather-front-u10
           ports:
             - containerPort: 8080
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: weather-front
+  name: weather-front-u10
 spec:
   type: ClusterIP
   ports:
