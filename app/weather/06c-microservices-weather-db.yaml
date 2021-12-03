@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: weather-db
+  name: weather-db-u10
 spec:
   type: ClusterIP
   ports:
@@ -9,7 +9,7 @@ spec:
       port: 3306
       targetPort: 3306
   selector:
-    app: weather-db
+    app: weather-db-u10
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -19,11 +19,11 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: weather-db
+      app: weather-db-u10
   template:
     metadata:
       labels:
-        app: weather-db
+        app: weather-db-u10
     spec:
       volumes:
       - hostPath:
